@@ -1,0 +1,86 @@
+﻿@model MebelShop.Models.Product
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form  method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input name="Name" class="form-control" value="@Model.Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input name="Price" class="form-control" value="@Model.Price" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea rows="5" name="Description" class="form-control"  >  @Model.Description </textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>New </label>
+                    @if (Model.News)
+                    {
+                        @Html.CheckBoxFor(model => model.News)
+                    }
+                    else
+                    {
+                        @Html.CheckBoxFor(model => model.News)
+                    }
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label   class="control-label"></label>
+                
+                <select class="form-control" name="CategoryId">
+                    @foreach (var item in ViewBag.Category)
+                    {
+                        if (item.Name == Model.Category.Name)
+                        {
+                            <option value="@item.Id" selected>@item.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id"  >@item.Name</option>
+                        }
+
+
+                    }
+
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Images</label>
+                <input type="file" multiple name="Photo" class="form-control"   />
+
+                @foreach (var item in ViewBag.image)
+                {
+
+                    <img src="~/images/@item.Name" class="img-thumbnail" style="width:120px;height:120px" />
+
+                }
+            </div>
+                <div class="form-group">
+                    <input type="submit" value="Edit" class="btn btn-success" />
+                </div>
+            </form>
+    </div>
+</div>
+
+ 
+

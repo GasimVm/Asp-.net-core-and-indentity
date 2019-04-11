@@ -1,0 +1,62 @@
+﻿@model MebelShop.Models.ProductVM.ProductVM
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<a   href="/Admin/Admin/Create" class="btn btn-lg d-block btn-success ">Create</a>
+<div class="container"> 
+    <div class="row">
+        
+
+        <div class="col-md-10 col-md-offset-1">
+            <h2>Details</h2>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">New</th>
+                        <th scope="col">Image</th>
+
+                        <th scope="col">Delete</th>
+                        <th scope="col">Edit</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Product)
+                    {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.Category.Name</td>
+                        @if (item.News)
+                        {
+                            <td> New</td>
+                        }
+                        else
+                        {
+                            <td> Old</td>
+                        }
+                        <td>
+                            @foreach (var img in Model.Images.Where(p => p.ProductId == item.Id))
+                            {
+                                <img src="~/images/@img.Name" class="img-thumbnail" style="width:100px;height:100px" />
+
+
+                            }
+                        </td>
+
+                        <td><a href="/Admin/Admin/Delete?id=@item.Id" class="text-danger">delete</a></td>
+                        <td><a href="/Admin/Admin/Edit?id=@item.Id" class=" text-info">edit</a></td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+ 

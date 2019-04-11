@@ -1,0 +1,74 @@
+﻿@model MebelShop.Models.ProductVM.DetailVM
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!--  Product Details -->
+            <div class="product product-details clearfix">
+                <div class="col-md-6 table-bordered">
+                    @foreach (var item in Model.Images.Where(p => p.ProductId == Model.Product.Id))
+                    {    <div class="col-md-6">
+                            <div class="product-view">
+                                <img src="~/images/@item.Name" alt="">
+                            </div>
+                            </div>
+                            }
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="product-body">
+                                <div class="product-label">
+                                    @if (Model.Product.News)
+                                    {
+                                        <span>New</span>
+                                    }
+                                    else
+                                    {
+                                        <span>New</span>
+                                    }
+
+
+
+                                </div>
+                                <h2 class="product-name">@Model.Product.Name</h2>
+                                <h3 class="product-price">@Model.Product.Price</h3>
+                                <div>
+                                    <div class="product-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o empty"></i>
+                                    </div>
+
+                                </div>
+                                <p>@Model.Product.Description</p>
+                                <div class="product-btns">
+
+                                    <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                     
+                                        <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+            <!-- /Product Details -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
